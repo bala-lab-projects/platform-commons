@@ -260,7 +260,14 @@ make publish-local
 
 ## License
 
-[Add your license information here]
+MIT License - see [LICENSE](./LICENSE) file for details.
+
+## Author
+
+**Balamurugan Elangovan**
+Principal Software Engineer | Platform Engineering
+
+[GitHub](https://github.com/bala-lab-projects) | [LinkedIn](https://www.linkedin.com/in/balamurugan-elangovan-53791985/) | mail.bala0224@gmail.com
 
 ## Support
 
