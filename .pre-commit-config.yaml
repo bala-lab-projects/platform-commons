@@ -1,0 +1,44 @@
+# Pre-commit hooks for platform-commons
+# See https://pre-commit.com for more information
+# To install: make pre-commit-install
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  # Kotlin formatting with ktlint (removes unused imports)
+  - repo: local
+    hooks:
+      - id: ktlint-format
+        name: ktlint format
+        description: Format Kotlin files with ktlint and remove unused imports
+        entry: .githooks/ktlint-format.sh
+        language: system
+        files: \.kt(s)?$
+        pass_filenames: true
+
+  # Gradle wrapper validation
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-executables-have-shebangs
+        files: gradlew
+
+  # Commit message linting (conventional commits)
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.6.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: [--strict]
