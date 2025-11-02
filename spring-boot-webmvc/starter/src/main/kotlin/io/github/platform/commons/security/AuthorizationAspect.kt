@@ -79,13 +79,12 @@ class AuthorizationAspect {
     private fun extractUserGroups(
         request: HttpServletRequest,
         authorization: Authorization,
-    ): Set<String> =
-        authorization.headerNames
-            .mapNotNull { request.getHeader(it) }
-            .filter { StringUtils.isNotBlank(it) }
-            .flatMap { it.split(authorization.delimiter) }
-            .map { it.trim() }
-            .toSet()
+    ): Set<String> = authorization.headerNames
+        .mapNotNull { request.getHeader(it) }
+        .filter { StringUtils.isNotBlank(it) }
+        .flatMap { it.split(authorization.delimiter) }
+        .map { it.trim() }
+        .toSet()
 
     companion object {
         private val log = LoggerFactory.getLogger(AuthorizationAspect::class.java)

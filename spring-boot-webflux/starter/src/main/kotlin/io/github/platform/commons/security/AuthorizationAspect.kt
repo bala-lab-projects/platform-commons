@@ -91,16 +91,15 @@ class AuthorizationAspect {
         ctx: reactor.util.context.ContextView,
         authorization: Authorization,
         authorizedGroups: Array<String>,
-    ): Mono<Void> =
-        Mono.fromRunnable {
-            val contextExchange =
-                ctx.getOrDefault(ServerWebExchange::class.java, null)
-                    ?: run {
-                        log.warn(NO_WEB_EXCHANGE)
-                        throw ForbiddenException(FORBIDDEN_UNABLE_TO_VERIFY)
-                    }
-            performAuthorizationCheck(contextExchange, authorization, authorizedGroups)
-        }
+    ): Mono<Void> = Mono.fromRunnable {
+        val contextExchange =
+            ctx.getOrDefault(ServerWebExchange::class.java, null)
+                ?: run {
+                    log.warn(NO_WEB_EXCHANGE)
+                    throw ForbiddenException(FORBIDDEN_UNABLE_TO_VERIFY)
+                }
+        performAuthorizationCheck(contextExchange, authorization, authorizedGroups)
+    }
 
     /**
      * Performs the authorization check.
@@ -146,13 +145,12 @@ class AuthorizationAspect {
     private fun extractUserGroups(
         exchange: ServerWebExchange,
         authorization: Authorization,
-    ): Set<String> =
-        authorization.headerNames
-            .mapNotNull { exchange.request.headers.getFirst(it) }
-            .filter { StringUtils.isNotBlank(it) }
-            .flatMap { it.split(authorization.delimiter) }
-            .map { it.trim() }
-            .toSet()
+    ): Set<String> = authorization.headerNames
+        .mapNotNull { exchange.request.headers.getFirst(it) }
+        .filter { StringUtils.isNotBlank(it) }
+        .flatMap { it.split(authorization.delimiter) }
+        .map { it.trim() }
+        .toSet()
 
     companion object {
         private val log = LoggerFactory.getLogger(AuthorizationAspect::class.java)

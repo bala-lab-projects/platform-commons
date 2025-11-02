@@ -22,10 +22,9 @@ class TestSecurityConfiguration {
      * @return The configured security filter chain.
      */
     @Bean
-    fun securityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain =
-        http
-            .authorizeExchange { exchanges ->
-                exchanges.anyExchange().permitAll()
-            }.csrf { it.disable() }
-            .build()
+    fun securityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain = http
+        .authorizeExchange { exchanges ->
+            exchanges.anyExchange().permitAll()
+        }.csrf { it.disable() }
+        .build()
 }

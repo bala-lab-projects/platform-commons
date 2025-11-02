@@ -231,7 +231,7 @@ make check-format
 ### Pre-commit Hooks
 
 ```bash
-# Install hooks (includes ktlint for unused import removal)
+# Install hooks (includes Spotless and ktlint for automatic formatting)
 make pre-commit-install
 
 # Run all pre-commit checks

@@ -125,20 +125,19 @@ abstract class AbstractRestClient(
      *
      * @return The HTTP headers.
      */
-    private fun buildHeaders(): HttpHeaders =
-        HttpHeaders().apply {
-            contentType = MediaType.APPLICATION_JSON
+    private fun buildHeaders(): HttpHeaders = HttpHeaders().apply {
+        contentType = MediaType.APPLICATION_JSON
 
-            // Add OAuth token if manager is available
-            oAuthTokenManager?.let {
-                set(HeaderConstants.AUTHORIZATION, "$BEARER_PREFIX${it.getToken()}")
-            }
-
-            // Propagate transaction ID from MDC
-            MDC.get(MdcKeys.TRANSACTION_ID)?.let {
-                set(HeaderConstants.X_TRANSACTION_ID, it)
-            }
+        // Add OAuth token if manager is available
+        oAuthTokenManager?.let {
+            set(HeaderConstants.AUTHORIZATION, "$BEARER_PREFIX${it.getToken()}")
         }
+
+        // Propagate transaction ID from MDC
+        MDC.get(MdcKeys.TRANSACTION_ID)?.let {
+            set(HeaderConstants.X_TRANSACTION_ID, it)
+        }
+    }
 
     companion object {
         private val log = LoggerFactory.getLogger(AbstractRestClient::class.java)

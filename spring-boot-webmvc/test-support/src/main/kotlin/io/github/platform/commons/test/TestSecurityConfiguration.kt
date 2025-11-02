@@ -19,9 +19,8 @@ class TestSecurityConfiguration {
      * @throws Exception if configuration fails
      */
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain =
-        http
-            .authorizeHttpRequests { auth -> auth.anyRequest().permitAll() }
-            .csrf { it.disable() }
-            .build()
+    fun filterChain(http: HttpSecurity): SecurityFilterChain = http
+        .authorizeHttpRequests { auth -> auth.anyRequest().permitAll() }
+        .csrf { it.disable() }
+        .build()
 }

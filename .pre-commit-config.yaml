@@ -17,6 +17,18 @@ repos:
       - id: mixed-line-ending
         args: ['--fix=lf']
 
+  # Spotless formatting (runs before ktlint)
+  - repo: local
+    hooks:
+      - id: spotless-check
+        name: spotless format
+        description: Check and apply Spotless formatting (auto-fixes issues)
+        entry: .githooks/spotless-check.sh
+        language: system
+        files: \.kt(s)?$
+        pass_filenames: false
+        always_run: true
+
   # Kotlin formatting with ktlint (removes unused imports)
   - repo: local
     hooks:

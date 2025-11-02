@@ -11,8 +11,8 @@ help:
 	@echo "  check-format        - Check code formatting"
 	@echo "  spotless-apply      - Auto-fix spotless violations"
 	@echo "  spotless-check      - Check for spotless violations"
-	@echo "  pre-commit-install  - Install pre-commit hooks"
-	@echo "  pre-commit-run      - Run pre-commit on git-tracked files (removes unused imports)"
+	@echo "  pre-commit-install  - Install pre-commit hooks (includes Spotless + ktlint)"
+	@echo "  pre-commit-run      - Run pre-commit on all files (Spotless, ktlint, linting)"
 
 build:
 	./gradlew build

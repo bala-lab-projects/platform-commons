@@ -112,8 +112,10 @@ git checkout -b fix/authorization-header-parsing
 
 We use **Spotless** for automated code formatting with ktlint for Kotlin.
 
+Pre-commit hooks automatically run Spotless and ktlint on every commit, so formatting issues are caught and fixed automatically.
+
 ```bash
-# Format code before committing
+# Format code manually (optional - pre-commit hooks do this automatically)
 make format
 
 # Check formatting

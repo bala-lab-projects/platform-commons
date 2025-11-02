@@ -117,11 +117,10 @@ class LoggingFilter :
      * @param uri The request URI.
      * @return True if the request should be logged, false otherwise.
      */
-    private fun shouldLog(uri: String): Boolean =
-        !uri.contains(ACTUATOR_HEALTH_PATH) &&
-            !uri.contains(HEALTH_PATH) &&
-            !uri.contains(SWAGGER_UI_PATH) &&
-            !uri.contains(API_DOCS_PATH)
+    private fun shouldLog(uri: String): Boolean = !uri.contains(ACTUATOR_HEALTH_PATH) &&
+        !uri.contains(HEALTH_PATH) &&
+        !uri.contains(SWAGGER_UI_PATH) &&
+        !uri.contains(API_DOCS_PATH)
 
     /**
      * Gets client IP address from request, checking X-Forwarded-For header first.

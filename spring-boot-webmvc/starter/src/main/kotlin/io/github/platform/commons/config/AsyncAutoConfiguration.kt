@@ -21,13 +21,12 @@ class AsyncAutoConfiguration {
      * @return The created task executor.
      */
     @Bean
-    fun taskExecutor(mdcTaskDecorator: MdcTaskDecorator): Executor =
-        ThreadPoolTaskExecutor().apply {
-            corePoolSize = 5
-            maxPoolSize = 10
-            queueCapacity = 25
-            setThreadNamePrefix("Async-")
-            setTaskDecorator(mdcTaskDecorator)
-            initialize()
-        }
+    fun taskExecutor(mdcTaskDecorator: MdcTaskDecorator): Executor = ThreadPoolTaskExecutor().apply {
+        corePoolSize = 5
+        maxPoolSize = 10
+        queueCapacity = 25
+        setThreadNamePrefix("Async-")
+        setTaskDecorator(mdcTaskDecorator)
+        initialize()
+    }
 }
